@@ -10,6 +10,7 @@ import { Component } from '@angular/core';
 })
 export class ContactListComponent {
   isHidden = true;
+  isDelete = true;
 
   openModal() {
     this.isHidden = false;
@@ -17,5 +18,13 @@ export class ContactListComponent {
 
   closeModal() {
     this.isHidden = true;
+  }
+
+  openDeleteModal() {
+    this.isDelete = false;
+  }
+
+  closeDeleteModal() {
+    this.isDelete = true;
   }
 }
