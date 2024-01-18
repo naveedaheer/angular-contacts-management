@@ -1,4 +1,19 @@
-<h1 class="text-3xl font-bold underline">
-  Contacts Management!
-</h1>
-<router-outlet></router-outlet>
+<div>
+
+  <header>
+    <section>
+      <h1 class="text-3xl font-bold underline">{{ title }}</h1>
+    </section>
+    <nav>
+      <ul>
+        <li><a routerLink="/">Home</a></li>
+        <li><a routerLink="/contacts">Contacts</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+
+</div>
