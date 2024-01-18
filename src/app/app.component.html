@@ -1,11 +1,9 @@
 <div>
 
   <header>
-    <section>
-      <h1 class="text-3xl font-bold underline">{{ title }}</h1>
-    </section>
-    <nav>
-      <ul>
+    <nav class="bg-purple-600 text-white flex md:justify-between flex-col md:flex-row">
+      <div class="mx-auto md:mx-0 font-bold">{{ title }}</div>
+      <ul class="flex space-x-5 justify-center md:justify-normal hover:cursor-pointer">
         <li><a routerLink="/">Home</a></li>
         <li><a routerLink="/contacts">Contacts</a></li>
       </ul>
