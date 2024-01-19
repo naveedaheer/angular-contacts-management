@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { AppState } from '../store/app.state';
+import { AppState } from './store/app.state';
 import { Store } from '@ngrx/store';
 
 
@@ -14,5 +14,5 @@ import { Store } from '@ngrx/store';
 })
 export class AppComponent {
   title = 'Contacts Management App';
-  constructor ( private store: Store<AppState>){}
+  constructor(private store: Store<AppState>) { }
 }

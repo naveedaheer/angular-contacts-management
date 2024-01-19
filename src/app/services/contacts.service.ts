@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import * as ContactActions from '../store/contacts.actions';
+import * as ContactActions from './store/contacts.actions';
 import { ContactState } from '../store/contacts.state';
 import { contact } from '../models/contact.model';
 @Injectable({
