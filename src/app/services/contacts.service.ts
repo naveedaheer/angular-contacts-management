@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import * as ContactActions from './store/contacts.actions';
-import { ContactState } from '../store/contacts.state';
+import * as ContactActions from '../store/state/contacts.actions';
+import { ContactState } from '../store/state/contacts.state';
 import { contact } from '../models/contact.model';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -26,10 +27,12 @@ export class ContactService {
   loadContacts() {
     this.store.dispatch(ContactActions.loadContacts());
   }
+
   deleteContact(contactId: number): Observable<void> {
     const url = `${this.apiUrl}/contact/${contactId}`;
     return this.http.delete<void>(url);
   }
+  
   addContact(contactData: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/contact`, contactData);
   }
