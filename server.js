@@ -9,7 +9,7 @@ app.use(express.static(__dirname + '/dist/angular-contacts-management'));
 
 app.get('/*', function(req,res) {
     
-res.sendFile(path.join(__dirname+'/dist/angular-contacts-management/index.html'));
+res.sendFile(path.join(__dirname+'/dist/angular-contacts-management/browser/index.html'));
 });
 
 // Start the app by listening on the default Heroku port
