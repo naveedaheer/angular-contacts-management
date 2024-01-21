@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './contact-list.component.html',
-  styleUrl: './contact-list.component.scss',
+  styleUrls: ['./contact-list.component.scss'],
 })
 export class ContactListComponent {
   isHidden = true;

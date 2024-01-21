@@ -11,7 +11,7 @@ import { contact } from '../models/contact.model';
     selector: 'app-contacts',
     standalone: true,
     templateUrl: './contacts.component.html',
-    styleUrl: './contacts.component.scss',
+    styleUrls: ['./contacts.component.scss'],
     imports: [ContactListComponent]
 })
 export class ContactsComponent {
