@@ -5,7 +5,7 @@ import { select, Store } from '@ngrx/store';
 import { AppState } from '../store/app.state';
 import { loadContacts } from '../store/state/contacts.actions';
 import { selectContacts } from '../store/state/contacts.selector';
-import { contact } from '../models/contact.model';
+import { Contact } from '../models/contact.model';
 
 @Component({
     selector: 'app-contacts',
@@ -15,7 +15,7 @@ import { contact } from '../models/contact.model';
     imports: [ContactListComponent]
 })
 export class ContactsComponent {
-    contacts$: Observable<contact[]>;
+    contacts$: Observable<Contact[]>;
 
     constructor(
         private store: Store<AppState>,
