@@ -17,8 +17,8 @@ export class ContactEffects {
     this.actions$.pipe(
       ofType(loadContacts),
       tap(() => console.log('loadContacts effect triggered')),
-      switchMap(() =>
-        this.contactService.getContacts().pipe(
+      switchMap((action) =>
+        this.contactService.getContacts(action.filters).pipe(
           map((contacts) => { return loadContactsSuccess({ contacts }) }),
           catchError((error) => of(loadContactsFailure({ error })))
         )

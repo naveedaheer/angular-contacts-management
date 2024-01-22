@@ -2,7 +2,7 @@ import { createAction, props } from '@ngrx/store';
 import { APIReponse, AddContact, Contact } from '../../models/contact.model';
 
 // Contact list
-export const loadContacts = createAction('[Contacts] Load Contacts');
+export const loadContacts = createAction('[Contacts] Load Contacts', props<{ filters?: Contact }>());
 export const loadContactsSuccess = createAction('[Contacts] Load Contacts Success', props<{ contacts: Contact[] }>());
 export const loadContactsFailure = createAction('[Contacts] Load Contacts Failure', props<{ error: string }>());
 

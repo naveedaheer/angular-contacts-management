@@ -30,7 +30,11 @@ export class ContactsComponent {
     }
 
     ngOnInit() {
-        this.store.dispatch(loadContacts());
+        this.store.dispatch(loadContacts({}));
+    }
+
+    onSearchContacts(event: Contact) {
+        this.store.dispatch(loadContacts({filters: event}));
     }
 
     openContactForm() {
