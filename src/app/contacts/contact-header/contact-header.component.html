@@ -1,14 +1,14 @@
-<div class="flex items-center justify-between space-y-4 md:space-y-0 p-4 bg-white">
+<div class="flex items-center justify-between space-y-4 md:space-y-0 py-4 bg-white">
     <div class="flex gap-4">
         <div>
             <input type="text" id="first_name" [(ngModel)]="firstName"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="First name" required>
+                placeholder="First name" required autocomplete="off">
         </div>
         <div>
             <input type="text" id="last_name" [(ngModel)]="lastName"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Last name" required>
+                placeholder="Last name" required autocomplete="off">
         </div>
         <button type="button"
             class="text-white bg-purple-600 border border-purple-300 focus:outline-none hover:text-black hover:bg-purple-100 focus:ring-2 focus:ring-purple-200 font-medium rounded-lg text-sm px-3 py-1.5"
@@ -18,6 +18,17 @@
                     d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
             </svg>
             <span class="sr-only">Search</span>
+        </button>
+        <button type="button"
+            class="text-white bg-purple-600 border border-purple-300 focus:outline-none hover:text-black hover:bg-purple-100 focus:ring-2 focus:ring-purple-200 font-medium rounded-lg text-sm px-2.5 py-1 hover-icon"
+            (click)="onResetContacts()">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 64 64"
+                style="fill:#FFFFFF;">
+                <path
+                    d="M51.092 15.737L48.263 12.908 32 29.172 15.737 12.908 12.908 15.737 29.172 32 12.908 48.263 15.737 51.092 32 34.828 48.263 51.092 51.092 48.263 34.828 32z">
+                </path>
+            </svg>
+            <span class="sr-only">close</span>
         </button>
     </div>
     <button
