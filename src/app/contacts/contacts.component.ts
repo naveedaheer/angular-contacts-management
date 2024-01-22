@@ -6,13 +6,14 @@ import { AppState } from '../store/app.state';
 import { loadContacts } from '../store/state/contacts.actions';
 import { selectContacts } from '../store/state/contacts.selector';
 import { Contact } from '../models/contact.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-contacts',
     standalone: true,
     templateUrl: './contacts.component.html',
     styleUrls: ['./contacts.component.scss'],
-    imports: [ContactListComponent]
+    imports: [CommonModule, ContactListComponent]
 })
 export class ContactsComponent {
     contacts$: Observable<Contact[]>;
