@@ -2,6 +2,9 @@
     <app-contact-header (addContactClicked)="openContactForm()"></app-contact-header>
     <app-contact-list [contacts]="contacts$ | async" (editContact)="onEditContact($event)"
         (deleteContact)="onDeleteContact($event)"></app-contact-list>
-    <app-contact-form [isOpenModal]="openModal" (modalClose)="closeContactForm()"></app-contact-form>
-    <app-delete-confirmation [openDeleteConfirmation]="selectedContactId > 0" (confirmDelete)="confirmDelete()" (cancelDelete)="cancelDelete()"></app-delete-confirmation>
+    <app-contact-form [isOpenModal]="openModal" (modalClose)="closeContactForm()"
+        (formDataSubmit)="onFormSubmit($event)">
+    </app-contact-form>
+    <app-delete-confirmation [openDeleteConfirmation]="selectedContactId > 0" (confirmDelete)="confirmDelete()"
+        (cancelDelete)="cancelDelete()"></app-delete-confirmation>
 </div>

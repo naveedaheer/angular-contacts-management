@@ -3,9 +3,9 @@ import { ContactListComponent } from './contact-list/contact-list.component';
 import { Observable } from 'rxjs';
 import { select, Store } from '@ngrx/store';
 import { AppState } from '../store/app.state';
-import { deleteContact, loadContacts } from '../store/state/contacts.actions';
+import { addContact, deleteContact, loadContacts } from '../store/state/contacts.actions';
 import { selectContacts } from '../store/state/contacts.selector';
-import { Contact } from '../models/contact.model';
+import { AddContact, Contact } from '../models/contact.model';
 import { CommonModule } from '@angular/common';
 import { ContactHeaderComponent } from './contact-header/contact-header.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
@@ -22,6 +22,7 @@ export class ContactsComponent {
     contacts$: Observable<Contact[]>;
     openModal: boolean = false;
     selectedContactId: number = -1; // -1 to makes sense because type is number
+
     constructor(
         private store: Store<AppState>,
     ) {
@@ -56,4 +57,9 @@ export class ContactsComponent {
     cancelDelete() {
         this.selectedContactId = -1;
     }
+
+    onFormSubmit(formData: AddContact) {
+        this.store.dispatch(addContact({ contact: formData }));
+    }
+
 }

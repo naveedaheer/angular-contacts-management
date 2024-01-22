@@ -1,10 +1,10 @@
 <div *ngIf="isOpenModal"
     class="absolute h-screen w-full flex justify-center items-center bg-black bg-opacity-50 p-4 md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative w-full max-w-2xl max-h-full">
-        <form class="relative bg-white rounded-lg shadow">
+        <form class="relative bg-white rounded-lg shadow" (ngSubmit)="onSubmit()" [formGroup]="contactForm">
             <div class="flex items-start justify-between p-4 border-b rounded-t">
                 <h3 class="text-xl font-semibold">
-                    {{title}}
+                    Contact Form
                 </h3>
                 <button type="button"
                     class="text-gray-400 bg-transparent hover:bg-gray-200 hover rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -20,29 +20,26 @@
             <div class="p-6 space-y-6">
                 <div class="grid grid-cols-6 gap-6">
                     <div class="col-span-6 sm:col-span-3">
-                        <label for="first-name" class="block mb-2 text-sm font-medium">First
-                            Name</label>
-                        <input type="text" name="first-name" id="first-name"
+                        <label for="first-name" class="block mb-2 text-sm font-medium">First Name</label>
+                        <input type="text" name="first-name" id="first-name" formControlName="firstName"
                             class="shadow-sm bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Bonnie" required="">
                     </div>
                     <div class="col-span-6 sm:col-span-3">
-                        <label for="last-name" class="block mb-2 text-sm font-medium">Last
-                            Name</label>
-                        <input type="text" name="last-name" id="last-name"
+                        <label for="last-name" class="block mb-2 text-sm font-medium">Last Name</label>
+                        <input type="text" name="last-name" id="last-name" formControlName="lastName"
                             class="shadow-sm bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Green" required="">
                     </div>
                     <div class="col-span-6 sm:col-span-3">
                         <label for="email" class="block mb-2 text-sm font-medium">Email</label>
-                        <input type="email" name="email" id="email"
+                        <input type="email" name="email" id="email" formControlName="email"
                             class="shadow-sm bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="example.com" required="">
                     </div>
                     <div class="col-span-6 sm:col-span-3">
-                        <label for="phone-number" class="block mb-2 text-sm font-medium">Phone
-                            Number</label>
-                        <input type="number" name="phone-number" id="phone-number"
+                        <label for="phone-number" class="block mb-2 text-sm font-medium">Phone Number</label>
+                        <input type="number" name="phone-number" id="phone-number" formControlName="phoneNumber"
                             class="shadow-sm bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="e.g. +(12)3456 789" required="">
                     </div>
