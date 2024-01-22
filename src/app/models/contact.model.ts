@@ -18,13 +18,6 @@ interface PageInfo {
     totalPages: number;
 }
 
-export interface AddContact {
-    firstName: string;
-    lastName: string;
-    email: string;
-    phoneNumber: string;
-}
-
 export interface APIReponse {
     message: string
     contactId?: number

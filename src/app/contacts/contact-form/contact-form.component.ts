@@ -1,7 +1,7 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { AddContact } from 'src/app/models/contact.model';
+import { Contact } from 'src/app/models/contact.model';
 
 @Component({
     selector: 'app-contact-form',
@@ -10,19 +10,32 @@ import { AddContact } from 'src/app/models/contact.model';
     templateUrl: './contact-form.component.html',
     styleUrls: ['./contact-form.component.scss']
 })
-export class ContactFormComponent {
+export class ContactFormComponent implements OnInit {
     @Input() isOpenModal: boolean = false;
+    @Input() contact: Contact | null = null;
     @Output() modalClose = new EventEmitter<void>();
-    @Output() formDataSubmit = new EventEmitter<AddContact>();
+    @Output() formDataSubmit = new EventEmitter<Contact>();
 
-    contactForm: FormGroup;
+    contactForm!: FormGroup;
 
-    constructor(private fb: FormBuilder) {
+    constructor(private fb: FormBuilder) { }
+
+    ngOnInit(): void {
+        this.initializeForm();
+    }
+
+    ngOnChanges(): void {
+        if (this.contactForm && this.contact) {
+            this.contactForm.patchValue(this.contact);
+        }
+    }
+
+    initializeForm() {
         this.contactForm = this.fb.group({
-            firstName: ['', [Validators.required]],
-            lastName: ['', [Validators.required]],
-            email: ['', [Validators.required, Validators.email]],
-            phoneNumber: ['']
+            firstName: [this.contact?.firstName || '', [Validators.required]],
+            lastName: [this.contact?.lastName || '', [Validators.required]],
+            email: [this.contact?.email || '', [Validators.email]],
+            phoneNumber: [this.contact?.phoneNumber || '']
         });
     }
 
@@ -32,13 +45,8 @@ export class ContactFormComponent {
 
     onSubmit() {
         if (this.contactForm.valid) {
-            const formData: AddContact = {
-                firstName: this.contactForm.value.firstName,
-                lastName: this.contactForm.value.lastName,
-                email: this.contactForm.value.email,
-                phoneNumber: this.contactForm.value.phoneNumber
-            };
-            this.formDataSubmit.emit(formData);
+            const updatedContact: Contact = { ...this.contact!, ...this.contactForm.value, id: this.contact?.id };
+            this.formDataSubmit.emit(updatedContact);
             this.modalClose.emit();
         }
     }

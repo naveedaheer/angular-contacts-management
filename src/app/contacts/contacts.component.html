@@ -1,8 +1,8 @@
 <div class="container m-auto my-4">
-    <app-contact-header (addContactClicked)="openContactForm()" (searchContacts)="onSearchContacts($event)"></app-contact-header>
+    <app-contact-header (addContactClicked)="selectedContact = null; openContactForm();" (searchContacts)="onSearchContacts($event)"></app-contact-header>
     <app-contact-list [contacts]="contacts$ | async" (editContact)="onEditContact($event)"
         (deleteContact)="onDeleteContact($event)"></app-contact-list>
-    <app-contact-form [isOpenModal]="openModal" (modalClose)="closeContactForm()"
+    <app-contact-form *ngIf="openModal" [contact]="selectedContact" [isOpenModal]="openModal" (modalClose)="closeContactForm()"
         (formDataSubmit)="onFormSubmit($event)">
     </app-contact-form>
     <app-delete-confirmation [openDeleteConfirmation]="selectedContactId > 0" (confirmDelete)="confirmDelete()"

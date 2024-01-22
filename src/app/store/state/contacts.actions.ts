@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { APIReponse, AddContact, Contact } from '../../models/contact.model';
+import { APIReponse, Contact } from '../../models/contact.model';
 
 // Contact list
 export const loadContacts = createAction('[Contacts] Load Contacts', props<{ filters?: Contact }>());
@@ -12,11 +12,11 @@ export const deleteContactSuccess = createAction('[Contacts] Delete Contact Succ
 export const deleteContactFailure = createAction('[Contacts] Delete Contact Failure', props<{ error: any }>());
 
 // Contact Add
-export const addContact = createAction('[Contacts] Add Contact', props<{ contact: AddContact }>());
+export const addContact = createAction('[Contacts] Add Contact', props<{ contact: Contact }>());
 export const addContactSuccess = createAction('[Contacts] Add Contact Success', props<{ contact: APIReponse }>());
 export const addContactFailure = createAction('[Contacts] Add Contact Failure', props<{ error: any }>());
 
 // Contact update
-export const updateContact = createAction('[Contacts] Update Contact', props<{ contactId: number, contact: AddContact }>());
+export const updateContact = createAction('[Contacts] Update Contact', props<{ contactId: number, contact: Contact }>());
 export const updateContactSuccess = createAction('[Contacts] Update Contact Success', props<{ contact: APIReponse }>());
 export const updateContactFailure = createAction('[Contacts] Update Contact Failure', props<{ error: any }>());

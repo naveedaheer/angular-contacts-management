@@ -1,8 +1,7 @@
-import { AddContact, Contact } from "../../models/contact.model";
+import { Contact } from "../../models/contact.model";
 
 export interface ContactState {
     contacts: Contact[];
-    AddContact: AddContact | null;
     loading: boolean;
     error: string | null;
     adding: boolean;
@@ -11,7 +10,6 @@ export interface ContactState {
 
 export const initialState: ContactState = {
     contacts: [],
-    AddContact: null,
     loading: false,
     error: null,
     adding: false,

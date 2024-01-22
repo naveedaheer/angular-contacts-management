@@ -3,9 +3,9 @@ import { ContactListComponent } from './contact-list/contact-list.component';
 import { Observable } from 'rxjs';
 import { select, Store } from '@ngrx/store';
 import { AppState } from '../store/app.state';
-import { addContact, deleteContact, loadContacts } from '../store/state/contacts.actions';
+import { addContact, deleteContact, loadContacts, updateContact } from '../store/state/contacts.actions';
 import { selectContacts } from '../store/state/contacts.selector';
-import { AddContact, Contact } from '../models/contact.model';
+import { Contact } from '../models/contact.model';
 import { CommonModule } from '@angular/common';
 import { ContactHeaderComponent } from './contact-header/contact-header.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
@@ -22,6 +22,7 @@ export class ContactsComponent {
     contacts$: Observable<Contact[]>;
     openModal: boolean = false;
     selectedContactId: number = -1; // -1 to makes sense because type is number
+    selectedContact: Contact | null = null;
 
     constructor(
         private store: Store<AppState>,
@@ -34,18 +35,26 @@ export class ContactsComponent {
     }
 
     onSearchContacts(event: Contact) {
-        this.store.dispatch(loadContacts({filters: event}));
+        this.store.dispatch(loadContacts({ filters: event }));
     }
 
     openContactForm() {
-        this.openModal = true
+        this.openModal = true;
     }
 
     closeContactForm() {
-        this.openModal = false
+        this.openModal = false;
     }
 
     onEditContact(contact: Contact) {
+        this.selectedContact = contact;
+        this.openContactForm();
+    }
+
+    onUpdateContact(updatedContact: Contact) {
+        this.store.dispatch(updateContact({ contactId: updatedContact?.id || -1, contact: updatedContact }));
+        this.selectedContact = null;
+        this.closeContactForm();
     }
 
     onDeleteContact(contactId: number) {
@@ -63,8 +72,15 @@ export class ContactsComponent {
         this.selectedContactId = -1;
     }
 
-    onFormSubmit(formData: AddContact) {
-        this.store.dispatch(addContact({ contact: formData }));
+    onFormSubmit(formData: Contact) {
+        if (this.selectedContact) {
+            this.onUpdateContact(formData);
+        } else {
+            this.store.dispatch(addContact({ contact: formData }));
+        }
+        setTimeout(() => {
+            this.store.dispatch(loadContacts({}));
+        }, 2000);
     }
 
 }

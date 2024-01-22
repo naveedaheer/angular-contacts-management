@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
-import { AddContact, APIReponse, Contact } from '../models/contact.model';
+import { APIReponse, Contact } from '../models/contact.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ContactService {
-  // private apiUrl = environment.apiUrl;
   private apiUrl = "https://contacts-management-a936dcf43aca.herokuapp.com";
 
 
@@ -24,11 +23,11 @@ export class ContactService {
     return this.http.delete<APIReponse>(url);
   }
 
-  addContact(contactData: AddContact): Observable<any> {
+  addContact(contactData: Contact): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/contact`, contactData);
   }
 
-  updateContact(contactId: number, contactData: AddContact): Observable<any> {
+  updateContact(contactId: number, contactData: Contact): Observable<any> {
     const url = `${this.apiUrl}/contact/${contactId}`;
     return this.http.put<any>(url, contactData);
   }
