@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { loadContacts, loadContactsSuccess, deleteContact, deleteContactSuccess, deleteContactFailure, addContact, addContactSuccess, addContactFailure, updateContact, updateContactSuccess, updateContactFailure } from './contacts.actions';
 import { initialState } from './contacts.state';
-
+const errorMessage = 'Something went wrong'
 export const contactReducer = createReducer(
     initialState,
     // Define your reducer actions here using the `on` function from '@ngrx/store'
@@ -15,43 +15,44 @@ export const contactReducer = createReducer(
     }),
 
     on(deleteContact, (state) => ({ ...state, deleting: true })),
-    on(deleteContactSuccess, (state, { contactId }) => {
-        showSnackbar("Contact deleted Successfully", 'success')
+    on(deleteContactSuccess, (state, { contact: contactReponse }) => {
+        showSnackbar(contactReponse.message, 'success')
         return {
             ...state,
-            contacts: state.contacts.filter((contact) => contact.id !== contactId),
+            contacts: state.contacts.filter((contact) => contact.id !== contactReponse?.contactId),
             deleting: false,
         }
     }),
     on(deleteContactFailure, (state, { error }) => {
-        showSnackbar("Something went wrong", 'error')
+        showSnackbar(errorMessage, 'error')
         return ({ ...state, error, updating: false })
     }),
 
 
     on(addContact, (state) => ({ ...state, adding: true })),
     on(addContactSuccess, (state, { contact }) => {
-        showSnackbar("Contact Added Successfully", 'success')
+        console.log(contact)
+        showSnackbar(contact.message, 'success')
         return {
             ...state,
             adding: false,
         }
     }),
     on(addContactFailure, (state, { error }) => {
-        showSnackbar("Something went wrong", 'error')
+        showSnackbar(errorMessage, 'error')
         return ({ ...state, error, updating: false })
     }),
 
     on(updateContact, (state) => ({ ...state, updating: true })),
     on(updateContactSuccess, (state, { contact }) => {
-        showSnackbar("Contact updated Successfully", 'success')
+        showSnackbar(contact.message, 'success')
         return {
             ...state,
             updating: false,
         }
     }),
     on(updateContactFailure, (state, { error }) => {
-        showSnackbar("Something went wrong", 'error')
+        showSnackbar(errorMessage, 'error')
         return ({ ...state, error, updating: false })
     })
 );

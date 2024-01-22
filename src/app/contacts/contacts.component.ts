@@ -51,6 +51,7 @@ export class ContactsComponent {
     confirmDelete() {
         if (this.selectedContactId) {
             this.store.dispatch(deleteContact({ contactId: this.selectedContactId }));
+            this.selectedContactId = -1;
         }
     }
 

@@ -4,6 +4,7 @@ import { of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { loadContacts, loadContactsSuccess, loadContactsFailure, deleteContact, deleteContactSuccess, deleteContactFailure, addContact, addContactSuccess, addContactFailure, updateContact, updateContactSuccess, updateContactFailure } from './contacts.actions';
 import { ContactService } from '../../services/contacts.service';
+import { APIReponse } from 'src/app/models/contact.model';
 
 @Injectable()
 export class ContactEffects {
@@ -30,7 +31,7 @@ export class ContactEffects {
       ofType(deleteContact),
       switchMap((action) =>
         this.contactService.deleteContact(action.contactId).pipe(
-          map(() => deleteContactSuccess({ contactId: action.contactId })),
+          map((contact: APIReponse) => deleteContactSuccess({ contact: { ...contact, contactId: action.contactId } })),
           catchError((error) => of(deleteContactFailure({ error })))
         )
       )

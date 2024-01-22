@@ -24,3 +24,8 @@ export interface AddContact {
     email: string;
     phoneNumber: string;
 }
+
+export interface APIReponse {
+    message: string
+    contactId?: number
+}

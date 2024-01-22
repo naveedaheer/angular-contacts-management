@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
-import { AddContact, Contact } from '../models/contact.model';
+import { AddContact, APIReponse, Contact } from '../models/contact.model';
 
 @Injectable({
   providedIn: 'root',
@@ -19,9 +19,9 @@ export class ContactService {
     ;
   }
 
-  deleteContact(contactId: number): Observable<void> {
+  deleteContact(contactId: number): Observable<APIReponse> {
     const url = `${this.apiUrl}/contact/${contactId}`;
-    return this.http.delete<void>(url);
+    return this.http.delete<APIReponse>(url);
   }
 
   addContact(contactData: AddContact): Observable<any> {
