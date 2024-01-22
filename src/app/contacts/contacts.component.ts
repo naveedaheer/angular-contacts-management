@@ -3,7 +3,7 @@ import { ContactListComponent } from './contact-list/contact-list.component';
 import { Observable } from 'rxjs';
 import { select, Store } from '@ngrx/store';
 import { AppState } from '../store/app.state';
-import { loadContacts } from '../store/state/contacts.actions';
+import { deleteContact, loadContacts } from '../store/state/contacts.actions';
 import { selectContacts } from '../store/state/contacts.selector';
 import { Contact } from '../models/contact.model';
 import { CommonModule } from '@angular/common';
@@ -21,6 +21,7 @@ export class ContactsComponent {
     @Output() addContactClicked = new EventEmitter<void>();
     contacts$: Observable<Contact[]>;
     openModal: boolean = false;
+    selectedContactId: number = -1; // -1 to makes sense because type is number
     constructor(
         private store: Store<AppState>,
     ) {
@@ -43,5 +44,16 @@ export class ContactsComponent {
     }
 
     onDeleteContact(contactId: number) {
+        this.selectedContactId = contactId;
+    }
+
+    confirmDelete() {
+        if (this.selectedContactId) {
+            this.store.dispatch(deleteContact({ contactId: this.selectedContactId }));
+        }
+    }
+
+    cancelDelete() {
+        this.selectedContactId = -1;
     }
 }

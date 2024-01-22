@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,5 +9,15 @@ import { CommonModule } from '@angular/common';
     styleUrls: ['./delete-confirmation.component.scss']
 })
 export class DeleteConfirmationComponent {
+    @Output() confirmDelete = new EventEmitter<void>();
+    @Output() cancelDelete = new EventEmitter<void>();
+    @Input() openDeleteConfirmation: boolean = false;
 
+    onConfirmDelete() {
+        this.confirmDelete.emit();
+    }
+
+    onCancelDelete() {
+        this.cancelDelete.emit();
+    }
 }

@@ -14,7 +14,7 @@ export class ContactService {
   constructor(private http: HttpClient) { }
 
   getContacts(filters?: AddContact): Observable<Contact[]> {
-    return this.http.get<any>(`${this.apiUrl}/contact?pageNumber=${1}&pageSize=${4}`)
+    return this.http.get<any>(`${this.apiUrl}/contact?pageNumber=${1}&pageSize=${50}`)
       .pipe(map((response) => (response.data)));
     ;
   }
