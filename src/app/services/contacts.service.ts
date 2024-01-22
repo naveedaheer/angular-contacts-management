@@ -15,7 +15,7 @@ export class ContactService {
 
   getContacts(filters?: Contact): Observable<Contact[]> {
     console.log("fetching contacts ...")
-    return this.http.get<Contact[]>(`${this.apiUrl}/contact`);
+    return this.http.get<Contact[]>(`${this.apiUrl}/contact?pageNumber=${1}&pageSize=${4}`);
   }
 
   deleteContact(contactId: number): Observable<void> {
