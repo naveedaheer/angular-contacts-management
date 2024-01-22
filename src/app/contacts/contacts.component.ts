@@ -1,4 +1,4 @@
-import { Component, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ContactListComponent } from './contact-list/contact-list.component';
 import { Observable } from 'rxjs';
 import { select, Store } from '@ngrx/store';
@@ -18,6 +18,7 @@ import { DeleteConfirmationComponent } from './delete-confirmation/delete-confir
     imports: [CommonModule, ContactListComponent, ContactHeaderComponent, ContactFormComponent, DeleteConfirmationComponent]
 })
 export class ContactsComponent {
+    @Output() addContactClicked = new EventEmitter<void>();
     contacts$: Observable<Contact[]>;
 
     constructor(
@@ -27,7 +28,16 @@ export class ContactsComponent {
     }
 
     ngOnInit() {
-        console.log("dispatch load contacts ...")
         this.store.dispatch(loadContacts());
+    }
+
+    onAddContact() {
+        console.log("open form")
+    }
+
+    onEditContact(contact: Contact) {
+    }
+
+    onDeleteContact(contactId: number) {
     }
 }

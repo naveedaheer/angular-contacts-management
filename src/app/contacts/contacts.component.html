@@ -1,6 +1,10 @@
 <div class="container m-auto my-4">
-    <app-contact-header></app-contact-header>
+    <app-contact-header (addContactClicked)="onAddContact()"></app-contact-header>
     <app-contact-form></app-contact-form>
     <app-delete-confirmation></app-delete-confirmation>
-    <app-contact-list [contacts]="contacts$ | async"></app-contact-list>
+    <app-contact-list 
+    [contacts]="contacts$ | async"
+    (editContact)="onEditContact($event)"
+    (deleteContact)="onDeleteContact($event)"
+  ></app-contact-list>
 </div>

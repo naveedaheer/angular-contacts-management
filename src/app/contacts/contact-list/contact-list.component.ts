@@ -1,14 +1,24 @@
-import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
-import { Contact } from 'src/app/models/contact.model';
-import { ContactFormComponent } from '../contact-form/contact-form.component';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Contact } from '../../models/contact.model';
+
 @Component({
     selector: 'app-contact-list',
-    standalone: true,
-    imports: [CommonModule, ContactFormComponent],
     templateUrl: './contact-list.component.html',
     styleUrls: ['./contact-list.component.scss'],
+    standalone: true,
 })
 export class ContactListComponent {
     @Input() contacts: Contact[] | null = [];
+    @Output() editContact = new EventEmitter<Contact>();
+    @Output() deleteContact = new EventEmitter<number>();
+
+    constructor() { }
+
+    onEditContactClick(contact: Contact) {
+        this.editContact.emit(contact);
+    }
+
+    onDeleteContactClick(contactId: number) {
+        this.deleteContact.emit(contactId);
+    }
 }

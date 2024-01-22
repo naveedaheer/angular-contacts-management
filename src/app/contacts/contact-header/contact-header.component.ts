@@ -1,4 +1,4 @@
-import { Component, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ContactFormComponent } from '../contact-form/contact-form.component';
 @Component({
@@ -9,5 +9,9 @@ import { ContactFormComponent } from '../contact-form/contact-form.component';
     styleUrls: ['./contact-header.component.scss']
 })
 export class ContactHeaderComponent {
+    @Output() addContactClicked = new EventEmitter<void>();
 
+    onAddContactClick() {
+        this.addContactClicked.emit();
+    }
 }
