@@ -12,7 +12,7 @@
         </div>
         <button type="button"
             class="text-white bg-purple-600 border border-purple-300 focus:outline-none hover:text-black hover:bg-purple-100 focus:ring-2 focus:ring-purple-200 font-medium rounded-lg text-sm px-3 py-1.5"
-            (click)="onSearchContacts()">
+            (click)="onSearchContacts()" [disabled]="!firstName && !lastName">
             <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
@@ -21,7 +21,7 @@
         </button>
         <button type="button"
             class="text-white bg-purple-600 border border-purple-300 focus:outline-none hover:text-black hover:bg-purple-100 focus:ring-2 focus:ring-purple-200 font-medium rounded-lg text-sm px-2.5 py-1 hover-icon"
-            (click)="onResetContacts()">
+            (click)="onResetContacts()" *ngIf="firstName || lastName">
             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 64 64"
                 style="fill:#FFFFFF;">
                 <path
