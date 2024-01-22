@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { loadContacts, loadContactsSuccess, loadContactsFailure, deleteContact, deleteContactSuccess, deleteContactFailure, addContact, addContactSuccess, addContactFailure, updateContact, updateContactSuccess, updateContactFailure } from './contacts.actions';
 import { ContactService } from '../../services/contacts.service';
 
@@ -15,6 +15,7 @@ export class ContactEffects {
   loadContacts$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loadContacts),
+      tap(() => console.log('loadContacts effect triggered')),
       switchMap(() =>
         this.contactService.getContacts().pipe(
           map((contacts) => { return loadContactsSuccess({ contacts }) }),

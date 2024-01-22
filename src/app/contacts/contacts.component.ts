@@ -24,6 +24,7 @@ export class ContactsComponent {
     }
 
     ngOnInit() {
+        console.log("dispatch load contacts ...")
         this.store.dispatch(loadContacts());
     }
 }
