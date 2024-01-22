@@ -9,12 +9,13 @@ import { Contact } from '../models/contact.model';
 import { CommonModule } from '@angular/common';
 import { ContactHeaderComponent } from './contact-header/contact-header.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
+import { DeleteConfirmationComponent } from './delete-confirmation/delete-confirmation.component';
 @Component({
     selector: 'app-contacts',
     standalone: true,
     templateUrl: './contacts.component.html',
     styleUrls: ['./contacts.component.scss'],
-    imports: [CommonModule, ContactListComponent, ContactHeaderComponent, ContactFormComponent]
+    imports: [CommonModule, ContactListComponent, ContactHeaderComponent, ContactFormComponent, DeleteConfirmationComponent]
 })
 export class ContactsComponent {
     contacts$: Observable<Contact[]>;
