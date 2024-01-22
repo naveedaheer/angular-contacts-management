@@ -11,7 +11,13 @@ import { CommonModule } from '@angular/common';
 export class ContactFormComponent {
     @Input() title: any
     @Input() isOpenModal: boolean = false
+    @Output() modalClose = new EventEmitter<void>();
     ngOnChanges(change: SimpleChanges) {
         console.log(change)
     }
+
+    modalClosed() {
+        this.modalClose.emit()
+    }
+
 }

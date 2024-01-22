@@ -20,9 +20,7 @@ import { DeleteConfirmationComponent } from './delete-confirmation/delete-confir
 export class ContactsComponent {
     @Output() addContactClicked = new EventEmitter<void>();
     contacts$: Observable<Contact[]>;
-    title: any
-    addContact: boolean = false
-    editContact: boolean = false
+    openModal: boolean = false;
     constructor(
         private store: Store<AppState>,
     ) {
@@ -33,9 +31,12 @@ export class ContactsComponent {
         this.store.dispatch(loadContacts());
     }
 
-    onAddContact(event: any) {
-        this.addContact = true
-        this.title = "ADD CONTACT"
+    openContactForm() {
+        this.openModal = true
+    }
+
+    closeContactForm() {
+        this.openModal = false
     }
 
     onEditContact(contact: Contact) {
