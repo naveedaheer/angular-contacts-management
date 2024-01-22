@@ -11,26 +11,4 @@ import { ContactFormComponent } from '../contact-form/contact-form.component';
 })
 export class ContactListComponent {
     @Input() contacts: Contact[] | null = [];
-    isModalOpen: boolean = false
-    isHidden = true;
-    isDelete = true;
-
-    openModal() {
-        console.log(this.isModalOpen)
-        this.isModalOpen = !this.isModalOpen
-        console.log(this.isModalOpen)
-
-    }
-
-    closeModal() {
-        this.isHidden = true;
-    }
-
-    openDeleteModal() {
-        this.isDelete = false;
-    }
-
-    closeDeleteModal() {
-        this.isDelete = true;
-    }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { ContactListComponent } from './contact-list/contact-list.component';
 import { Observable } from 'rxjs';
 import { select, Store } from '@ngrx/store';
@@ -7,13 +7,14 @@ import { loadContacts } from '../store/state/contacts.actions';
 import { selectContacts } from '../store/state/contacts.selector';
 import { Contact } from '../models/contact.model';
 import { CommonModule } from '@angular/common';
-
+import { ContactHeaderComponent } from './contact-header/contact-header.component';
+import { ContactFormComponent } from './contact-form/contact-form.component';
 @Component({
     selector: 'app-contacts',
     standalone: true,
     templateUrl: './contacts.component.html',
     styleUrls: ['./contacts.component.scss'],
-    imports: [CommonModule, ContactListComponent]
+    imports: [CommonModule, ContactListComponent, ContactHeaderComponent, ContactFormComponent]
 })
 export class ContactsComponent {
     contacts$: Observable<Contact[]>;
