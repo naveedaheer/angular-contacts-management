@@ -1,0 +1,19 @@
+#snackbar {
+    transition: opacity 0.5s;
+    /* Optional: Add a transition effect */
+    position: fixed;
+    bottom: 32px;
+    /* Center vertically */
+    right: 50%;
+    /* Center horizontally */
+    transform: translate(50%, 50%);
+    /* Center using translate */
+}
+
+#snackbar.show {
+    opacity: 1;
+}
+
+#snackbar.hide {
+    opacity: 0;
+}
