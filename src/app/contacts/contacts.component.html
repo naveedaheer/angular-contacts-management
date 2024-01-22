@@ -1,10 +1,7 @@
 <div class="container m-auto my-4">
-    <app-contact-header (addContactClicked)="onAddContact()"></app-contact-header>
-    <app-contact-form></app-contact-form>
+    <app-contact-header (addContactClicked)="onAddContact($event)"></app-contact-header>
+    <app-contact-list [contacts]="contacts$ | async" (editContact)="onEditContact($event)"
+        (deleteContact)="onDeleteContact($event)"></app-contact-list>
+    <app-contact-form [isOpenModal]="addContact" [title]="title"></app-contact-form>
     <app-delete-confirmation></app-delete-confirmation>
-    <app-contact-list 
-    [contacts]="contacts$ | async"
-    (editContact)="onEditContact($event)"
-    (deleteContact)="onDeleteContact($event)"
-  ></app-contact-list>
 </div>

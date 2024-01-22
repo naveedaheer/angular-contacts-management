@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,5 +9,9 @@ import { CommonModule } from '@angular/common';
     styleUrls: ['./contact-form.component.scss']
 })
 export class ContactFormComponent {
-
+    @Input() title: any
+    @Input() isOpenModal: boolean = false
+    ngOnChanges(change: SimpleChanges) {
+        console.log(change)
+    }
 }
